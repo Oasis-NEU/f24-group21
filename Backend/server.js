@@ -22,7 +22,7 @@ app.listen(8080, () => {
 });
 
 //Find/Termination of Ports
-// lsof -i :8080 finds the current connected ports
+// lsof -i :<portnumber> finds the current connected ports of <portnumber> 
 // kill -9 <PID> (Replace <PID> with the id of the active port) to terminate the connection
 
 

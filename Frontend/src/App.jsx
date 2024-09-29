@@ -6,11 +6,12 @@ import axios from "axios";
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const [array, setArray] = useState([]);
 
   const fetchAPI = async () => {
     try {
-        const response = await axios.get("http://localhost:8080/api");
+        const response = await axios.get("http://localhost:8080/api"); 
+        setArray(response.data.fruits); //Testing purposes, fetching fruit array from backend 
         console.log(response.data.fruits);
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -39,6 +40,14 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        {
+          array.map((fruit, index) => (
+            <div key={index}>
+              <p>{fruit} is a fruit in the API database!</p>
+              <br></br>
+            </div>
+          ))
+        }
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more

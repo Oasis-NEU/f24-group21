@@ -2,21 +2,32 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import axios from "axios";
+import axios from "axios"; //Might delete later
+import { supabase } from "./supabaseClient";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const [array, setArray] = useState([]);
 
+  // Function to fetch data from Supabase
   const fetchAPI = async () => {
     try {
-        const response = await axios.get("http://localhost:8080/api"); 
-        setArray(response.data.fruits); //Testing purposes, fetching fruit array from backend 
-        console.log(response.data.fruits);
+      // Querying the 'fruits' table from Supabase
+      const { data, error } = await supabase
+        .from('fruits')  // Assuming you have a table named 'fruits'
+        .select('*');    // Select all rows and columns
+      
+      if (error) {
+        throw error;
+      }
+      // Setting the fruits data
+      setArray(data);
+      console.log(data);
     } catch (error) {
-        console.error("Error fetching data:", error);
+      console.error("Error fetching data:", error.message);
     }
-};
+  };
 
   useEffect(() =>{
     fetchAPI();
@@ -40,10 +51,11 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        {/* Map over the array and render the fruit data */}
         {
           array.map((fruit, index) => (
             <div key={index}>
-              <p>{fruit} is a fruit in the API database!</p>
+              <p>{fruit.name} is a fruit in the Supabase database!</p>
               <br></br>
             </div>
           ))
@@ -53,7 +65,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

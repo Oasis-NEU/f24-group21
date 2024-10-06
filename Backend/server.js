@@ -5,6 +5,7 @@ const app = express();
 const corsOptions = {
     origin: ["http://localhost:5173", "http://localhost:5174"],
 };
+const next=require("next");
 
 
 app.use(cors(corsOptions));
@@ -24,6 +25,8 @@ app.listen(8080, () => {
 //Find/Termination of Ports
 // lsof -i :<portnumber> finds the current connected ports of <portnumber> 
 // kill -9 <PID> (Replace <PID> with the id of the active port) to terminate the connection
+
+
 
 
 

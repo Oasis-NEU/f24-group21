@@ -8,12 +8,12 @@ async function getUsers(req, res) {
       // Fetch user data from Supabase 'users' table
       const { data, error } = await supabase
         .from('user_profile')
-        .select();
+        .select('id, email, first_name, last_name, birthday, password, gender');
       if (error) {
         throw error;
       }
       // Convert each user from Supabase into a User class instance
-      const users = data.map((user) => new User(user.id, user.first_name, user.last_name, user.birthday));
+      const users = data.map((user) => new User(user.id, user.email, user.first_name, user.last_name, user.birthday, user.password, user.gender));
       // Send back users' details as response
       res.json(users.map((user) => user.getDetails()));
     } catch (error) {
@@ -23,6 +23,6 @@ async function getUsers(req, res) {
   }
   module.exports = {getUsers};
 
-  
+
   
   

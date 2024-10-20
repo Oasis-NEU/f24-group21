@@ -1,5 +1,5 @@
-const supabase = require('../supabaseClient');
-const User = require('../Data Modules/user');
+import supabase from '../supabaseClient.js';
+import User from '../Data Modules/user.js';
 
 //Fetch users from Supabase and create User instances (Like a list)
 
@@ -21,7 +21,7 @@ async function getUsers(req, res) {
       res.status(500).send('Failed to retrieve users');
     }
   }
-  module.exports = {getUsers};
+export default getUsers;
 
 
   

@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import userRoutes from './Routes/userRoutes.js';
 
 const app = express();  // Initialize the Express app
 
@@ -11,10 +12,8 @@ const corsOptions = {
 // Use CORS middleware
 app.use(cors(corsOptions));
 
-// Define a simple route
-app.get("/api", (req, res) => {
-  res.json({ fruits: ["apple", "orange", "banana"] });
-});
+//Use routes
+app.use('/users', userRoutes);
 
 
 export default app;

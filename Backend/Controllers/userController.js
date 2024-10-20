@@ -1,5 +1,5 @@
-const supabase = require('../supabaseClient');
-const User = require('../Data Modules/user');
+import supabase from ('../supabaseClient');
+import User from ('../Data Modules/user');
 
 //Fetch users from Supabase and create User instances (Like a list)
 

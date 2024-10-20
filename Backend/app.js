@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import userRoutes from './Routes/userRoutes';
 
 const app = express();  // Initialize the Express app
 
@@ -15,6 +16,9 @@ app.use(cors(corsOptions));
 app.get("/api", (req, res) => {
   res.json({ fruits: ["apple", "orange", "banana"] });
 });
+
+//Use routes
+app.use('/users', userRoutes);
 
 
 export default app;

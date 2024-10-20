@@ -13,7 +13,7 @@ async function getUsers(req, res) {
         throw error;
       }
       // Convert each user from Supabase into a User class instance
-      const users = data.map((user) => new User(user.id, user.first_name, user.last_name, user.age));
+      const users = data.map((user) => new User(user.id, user.first_name, user.last_name, user.birthday));
       // Send back users' details as response
       res.json(users.map((user) => user.getDetails()));
     } catch (error) {
@@ -21,6 +21,8 @@ async function getUsers(req, res) {
       res.status(500).send('Failed to retrieve users');
     }
   }
-  module.exports = { getUsers };
+  module.exports = {getUsers};
+
+  
   
   

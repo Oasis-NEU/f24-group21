@@ -1,0 +1,179 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5; /* Background remains unchanged */
+}
+
+.auth-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; 
+    margin: 0 auto;
+}
+
+/* Specific spacing for signup */
+.signup-box {
+    margin-bottom: 2rem; /* Adjust spacing for the signup box */
+}
+
+/* Specific spacing for login */
+.login-box {
+    margin-bottom: 3rem; /* Adjust spacing for the login box */
+}
+
+.auth-box h2 {
+    text-align: center;
+    color: #333; /* Changed to black */
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+}
+
+.form-group {
+    width: 100%; 
+    margin-bottom: 2rem; /* Increased spacing between different fields */
+}
+
+/* Specific margin for the email field */
+.form-group.email {
+    margin-top: 0; /* Resetting top margin for email field */
+}
+
+/* Specific spacing for first and last name fields */
+.form-group.name-spacing {
+    margin-bottom: 0.6rem; /* Adjust this value as needed */
+}
+
+/* Specific spacing for email, password, and confirm password fields */
+.form-group.field-spacing {
+    margin-bottom: 1.55rem; /* Adjust this value as needed */
+}
+
+/* Adjust space between label and input */
+.form-group label {
+    display: block;
+    margin-bottom: 0.25rem; /* Closer spacing between label and input */
+    color: #555; /* Changed to a darker shade */
+    font-weight: 500;
+}
+
+.input-field {
+    width: 100%; 
+    padding: 0.5rem; 
+    box-sizing: border-box; 
+}
+
+/* Adjust input styles */
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd; /* Border color unchanged */
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff0000; /* Changed to red */
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.25); /* Changed to red */
+}
+
+.form-group input.error {
+    border-color: #dc3545; /* Error color remains unchanged */
+}
+
+.error-message {
+    color: #dc3545; /* Error message color remains unchanged */
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    color: #555; /* Changed to a darker shade */
+}
+
+.remember-me input {
+    margin-right: 0.35rem; /* Space between checkbox and label */
+}
+
+.remember-me label {
+    font-size: 1rem; /* Smaller font size for "Remember Me" */
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 0.5rem; /* Adjusted gap between Remember Me and Forgot Password */
+}
+
+.forgot-password {
+    font-size: 0.9rem; 
+    color: #ff0000; /* Changed to red */
+    text-decoration: none; 
+}
+
+.forgot-password:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #ff0000; /* Change to your desired red color */
+    color: white; /* Text color remains white */
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.auth-button:hover {
+    background-color: #c70000; /* Darker red for hover effect */
+}
+
+.auth-button:disabled {
+    background-color: #ccc; /* Disabled button color remains unchanged */
+    cursor: not-allowed;
+}
+
+.auth-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #666; /* Changed to a darker shade */
+}
+
+.auth-footer a {
+    color: #ff0000; /* Changed to red */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.auth-logo {
+    width: 120px; /* Adjust this width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 0 0 0.8rem 0; /* Space between the logo and the title */
+}
+
+@media (max-width: 480px) {
+    .auth-box {
+        padding: 1.5rem;
+    }
+}

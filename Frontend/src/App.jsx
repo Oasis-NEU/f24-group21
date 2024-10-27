@@ -1,71 +1,57 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import axios from "axios"; //Might delete later
-import { supabase } from "../../Backend/supabaseClient";
-
-
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import supabase from "../../Backend/supabaseClient";
+import Login from './Login';
+import Signup from './Signup';
+import Dashboard from './Dashboard'; // We'll create this component for the main app content
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [array, setArray] = useState([]);
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Function to fetch data from Supabase
-  const fetchAPI = async () => {
-    try {
-      // Querying the 'fruits' table from Supabase
-      const { data, error } = await supabase
-        .from('fruits')  // Assuming you have a table named 'fruits'
-        .select('*');    // Select all rows and columns
-      
-      if (error) {
-        throw error;
-      }
-      // Setting the fruits data
-      setArray(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
-    }
-  };
+  useEffect(() => {
+    // Check for active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
 
-  useEffect(() =>{
-    fetchAPI();
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-        {/* Map over the array and render the fruit data */}
-        {
-          array.map((fruit, index) => (
-            <div key={index}>
-              <p>{fruit.name} is a fruit in the Supabase database!</p>
-              <br></br>
-            </div>
-          ))
-        }
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <Routes>
+        <Route 
+          path="/login" 
+          element={!session ? <Login /> : <Navigate to="/dashboard" />} 
+        />
+        <Route 
+          path="/signup" 
+          element={!session ? <Signup /> : <Navigate to="/dashboard" />} 
+        />
+        <Route 
+          path="/dashboard" 
+          element={session ? <Dashboard /> : <Navigate to="/login" />} 
+        />
+        <Route 
+          path="/" 
+          element={<Navigate to={session ? "/dashboard" : "/login"} />} 
+        />
+      </Routes>
+    </Router>
   );
 }
 

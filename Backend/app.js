@@ -17,7 +17,4 @@ app.use(cors(corsOptions));
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 
-
-
-
 export default app;

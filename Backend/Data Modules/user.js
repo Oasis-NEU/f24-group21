@@ -7,7 +7,6 @@ class User {
         this.birthday = birthday
         this.password = password
         this.gender = gender
-    
     }
 
     getDetails(){
@@ -20,6 +19,8 @@ class User {
             gender: this.gender,
         }
     }
+
+
 
 }
 

@@ -1,9 +1,11 @@
-import app from './app.js';  // Import the app from app.js
+import app from './app.js';  // Ensure the correct path to app.js
 
-const port = 8080;
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
+
 
 //Find/Termination of Ports
 // lsof -i :<portnumber> finds the current connected ports of <portnumber> 

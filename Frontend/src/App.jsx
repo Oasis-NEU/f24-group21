@@ -4,6 +4,9 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import axios from "axios"; // Optional, can be used for making requests
 
+// Set up Axios base URL
+axios.defaults.baseURL = 'http://localhost:5001'; // Ensure this matches your backend server
+
 function App() {
   const [count, setCount] = useState(0);
   const [array, setArray] = useState([]);

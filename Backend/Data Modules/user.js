@@ -2,6 +2,7 @@ class User {
     constructor(id, created_at, email, first_name, last_name, birthday, password, gender) {
         this.id = id
         this.email = email
+        this.created_at = created_at;
         this.first_name = first_name
         this.last_name = last_name
         this.birthday = birthday

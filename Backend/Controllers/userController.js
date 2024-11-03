@@ -50,15 +50,16 @@ export async function addUser(req, res) {
           { email, first_name, last_name, birthday, password, gender }
       ]);
 
+      console.log("Insert response:", data, error); // Log insert response
+
       if (error) {
-          console.error("Error adding user:", error);
-          return res.status(500).json({ error: 'Failed to add user', details: error });
+          console.error("Error adding user:", error.message); // More detailed logging
+          return res.status(500).json({ error: 'Failed to add user', details: error.message });
       }
 
       res.status(201).json({ message: 'User added successfully', data });
   } catch (error) {
-      console.error("Unexpected error in addUser:", error);
-      res.status(500).json({ error: 'Failed to add user', details: error });
+      console.error("Unexpected error in addUser:", error.message);
+      res.status(500).json({ error: 'Failed to add user', details: error.message });
   }
 }
-

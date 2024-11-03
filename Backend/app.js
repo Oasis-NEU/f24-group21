@@ -9,11 +9,12 @@ const app = express();  // Initialize the Express app
 const corsOptions = {
   origin: ["http://localhost:5173", "http://localhost:5174"], // Allow requests from these origins
 };
-
-// Use CORS middleware
 app.use(cors(corsOptions));
 
-//Use routes
+//Parse JSON
+app.use(express.json());
+
+//Routes
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 

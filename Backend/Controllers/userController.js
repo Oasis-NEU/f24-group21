@@ -63,3 +63,36 @@ export async function addUser(req, res) {
       res.status(500).json({ error: 'Failed to add user', details: error.message });
   }
 }
+
+export async function removeUser(req, res) {
+    const { id } = req.body; // Assume the user ID is sent in the request body
+
+    console.log("Request to remove user with ID:", id); // Log incoming ID
+
+    if (!id) {
+        return res.status(400).json({ error: 'User ID is required.' });
+    }
+
+    try {
+        const { data, error } = await supabase
+            .from('user_profile')
+            .delete()
+            .eq('id', id);
+
+        console.log("Delete response:", data, error); // Log delete response
+
+        if (error) {
+            console.error("Error removing user:", error.message);
+            return res.status(500).json({ error: 'Failed to remove user', details: error.message });
+        }
+
+        if (data.length === 0) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+
+        res.status(200).json({ message: 'User removed successfully', data });
+    } catch (error) {
+        console.error("Unexpected error in removeUser:", error.message);
+        res.status(500).json({ error: 'Failed to remove user', details: error.message });
+    }
+}
